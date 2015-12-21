@@ -38,10 +38,12 @@ set cursorline
 " 検索文字列をハイライトする
 set hlsearch
 
-" .cpp .hpp .hでの折り返し無効
-autocmd BufRead,BufNewFile *.cpp set nowrap
-autocmd BufRead,BufNewFile *.hpp set nowrap
-autocmd BufRead,BufNewFile *.h   set nowrap
+" .cpp .hpp .h .sln .csproj での折り返し無効
+autocmd BufRead,BufNewFile *.cpp    set nowrap
+autocmd BufRead,BufNewFile *.hpp    set nowrap
+autocmd BufRead,BufNewFile *.h      set nowrap
+autocmd BufRead,BufNewFile *.sln    set nowrap
+autocmd BufRead,BufNewFile *.csproj set nowrap
 
 " NeoBundleを有効にする
 if has('vim_starting')
@@ -72,12 +74,6 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 " 変更されたら読み込む
 let g:ycm_confirm_extra_conf = 0
 
-" 補完
-NeoBundle 'Shougo/neocomplete.vim'
-
-" 時間がかかっても補完検索を続ける
-let g:neocomplete#skip_auto_complete_time = ""
-
 " Tree
 NeoBundle 'scrooloose/nerdtree'
 
@@ -90,7 +86,7 @@ NeoBundle 'rhysd/wandbox-vim'
 call neobundle#end()
 
 " カラースキーマ
-colorscheme flatui
+colorscheme desert
 syntax enable
 
 " 色設定
