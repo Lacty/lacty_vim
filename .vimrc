@@ -45,6 +45,33 @@ autocmd BufRead,BufNewFile *.h      set nowrap
 autocmd BufRead,BufNewFile *.sln    set nowrap
 autocmd BufRead,BufNewFile *.csproj set nowrap
 
+" C++の設定
+function! s:cpp()
+  " インクルードパスなどを指定
+  setlocal path+=/usr/include,/usr/local/include,/usr/lib/c++14,/usr/include/c++/4.9.2,/usr/include/c++/4.9
+
+  " 括弧を構成する設定に<>を追加
+  setlocal matchpairs+=<:>
+endfunction
+
+augroup vimrc-cpp
+  autocmd!
+  " filetype=cppが設定されてた場合に関数を呼ぶ
+  autocmd FileType cpp call s:cpp()
+augroup END
+
+" 標準ライブラリへのパスを指定
+let $CPP_STDLIB = "/usr/include/c++/4.9.2"
+
+augroup vimrc-set_filetype_cpp
+  autocmd!
+  " CPP_STDLIBより下の階層のファイルが開かれて
+  " filetypeが設定されていなかったらcppとする
+  autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype)|set
+filetype=cpp|endif
+augroup END
+
+
 " NeoBundleを有効にする
 if has('vim_starting')
   if &compatible
@@ -60,21 +87,15 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " NeoBundleを更新させる
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" 補完
-NeoBundle 'Valloric/YouCompleteMe', {
-        \ 'build' : {
-        \ 'mac' : './install.sh --clang-completer',
-        \ 'unix' : './install.sh --clang-completer',
-        \ }
-        \ }
+" Neo補完
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neocomplete.vim'
 
-" 補完ファイルの設定
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" スニペット
+NeoBundle "Shougo/neosnippet"
+NeoBundle "Shougo/neosnippet-snippets"
 
-" 変更されたら読み込む
-let g:ycm_confirm_extra_conf = 0
-
-" Tree
+" Trees
 NeoBundle 'scrooloose/nerdtree'
 
 " syntastic
@@ -84,6 +105,13 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'rhysd/wandbox-vim'
 
 call neobundle#end()
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+
+imap <C-s> <Plug>(neosnippet_expand_or_jump)
+smap <C-s> <Plug>(neosnippet_expand_or_jump)
+
 
 " カラースキーマ
 colorscheme desert
