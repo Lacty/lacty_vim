@@ -45,33 +45,6 @@ autocmd BufRead,BufNewFile *.h      set nowrap
 autocmd BufRead,BufNewFile *.sln    set nowrap
 autocmd BufRead,BufNewFile *.csproj set nowrap
 
-" C++の設定
-function! s:cpp()
-  " インクルードパスなどを指定
-  setlocal path+=/usr/include,/usr/local/include,/usr/lib/c++14,/usr/include/c++/4.9.2,/usr/include/c++/4.9
-
-  " 括弧を構成する設定に<>を追加
-  setlocal matchpairs+=<:>
-endfunction
-
-augroup vimrc-cpp
-  autocmd!
-  " filetype=cppが設定されてた場合に関数を呼ぶ
-  autocmd FileType cpp call s:cpp()
-augroup END
-
-" 標準ライブラリへのパスを指定
-let $CPP_STDLIB = "/usr/include/c++/4.9.2"
-
-augroup vimrc-set_filetype_cpp
-  autocmd!
-  " CPP_STDLIBより下の階層のファイルが開かれて
-  " filetypeが設定されていなかったらcppとする
-  autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype)|set
-filetype=cpp|endif
-augroup END
-
-
 " NeoBundleを有効にする
 if has('vim_starting')
   if &compatible
@@ -90,10 +63,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Neo補完
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neoinclude.vim'
 
 " スニペット
-NeoBundle "Shougo/neosnippet"
-NeoBundle "Shougo/neosnippet-snippets"
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 " Trees
 NeoBundle 'scrooloose/nerdtree'
@@ -106,12 +80,24 @@ NeoBundle 'rhysd/wandbox-vim'
 
 call neobundle#end()
 
+
+" neocomplete の設定
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1
 
+" neosnippet の設定
 imap <C-s> <Plug>(neosnippet_expand_or_jump)
 smap <C-s> <Plug>(neosnippet_expand_or_jump)
 
+
+" C++の設定
+augroup vimrc-cpp
+  " 括弧を構成する設定に<>を追加
+  setlocal matchpairs+=<:>
+
+  " set include dir
+  setlocal path+=~/usr/include/c++/4.9.2
+augroup END
 
 " カラースキーマ
 colorscheme desert
