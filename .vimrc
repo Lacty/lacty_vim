@@ -86,8 +86,22 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1
 
 " neosnippet の設定
-imap <C-s> <Plug>(neosnippet_expand_or_jump)
-smap <C-s> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "<Plug>(neosnippet_expand_or_jump)>"
+  \: "\<TAB>"
+
+" for snippet_complete marker
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 
 " C++の設定
