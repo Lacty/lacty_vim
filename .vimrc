@@ -65,6 +65,9 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neoinclude.vim'
 
+" Clang Omini Complete
+NeoBundle 'Rip-Rip/clang_complete'
+
 " スニペット
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -83,6 +86,24 @@ call neobundle#end()
 
 " neocomplete の設定
 let g:neocomplete#enable_at_startup = 1
+
+
+" setting clang opt
+let g:clang_use_library = 1
+let g:clang_library_path = '/usr/lib/llvm-3.5/lib'
+let g:clang_user_options = '-std=c++14'
+
+" setting neocomplete
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc = 1
+let g:neocomplete#force_omni_input_patterns.cpp = 
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+" disable auto complete in clang
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
 
 
 " neosnippet の設定
