@@ -83,7 +83,7 @@ call neobundle#end()
 
 " neocomplete の設定
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplcache_enable_auto_select = 1
+
 
 " neosnippet の設定
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -110,7 +110,7 @@ augroup vimrc-cpp
   setlocal matchpairs+=<:>
 
   " set include dir
-  setlocal path+=~/usr/include/c++/4.9.2
+  setlocal path+=~/usr/include/c++/4.9.2,/usr/include
 augroup END
 
 " カラースキーマ
