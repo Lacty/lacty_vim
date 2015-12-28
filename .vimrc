@@ -134,9 +134,5 @@ augroup vimrc-cpp
   setlocal path+=~/usr/include/c++/4.9.2,/usr/include
 augroup END
 
-" カラースキーマ
-colorscheme desert
 syntax enable
-
-" 色設定
-hi Comment ctermfg=248
+hi Function guifg=red
