@@ -2,12 +2,6 @@
 " エンコード指定
 scriptencoding utf-8
 
-" インデント系
-set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-
 " オートインデント
 set autoindent
 
@@ -132,6 +126,18 @@ augroup vimrc-cpp
 
   " set include dir
   setlocal path+=~/usr/include/c++/4.9.2,/usr/include
+  
+  " Tab系
+  set expandtab
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+augroup END
+
+
+augroup vimrc-make
+  " Tab
+  set noexpandtab
 augroup END
 
 syntax enable
