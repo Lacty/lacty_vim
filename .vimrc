@@ -4,12 +4,13 @@ scriptencoding utf-8
 
 " オートインデント
 set autoindent
+set expandtab
 
 " (Win)パス区切りをスラッシュに
 set shellslash
 
 " 余裕をもってスクロール
-set scrolloff=5
+set scrolloff=3
 
 " delete key 有効
 set backspace=indent,eol,start
@@ -65,6 +66,16 @@ NeoBundle 'Rip-Rip/clang_complete'
 " スニペット
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+
+" vimproc
+NeoBundle 'Shougo/vimproc', {
+    \  'build' : {
+		  \ 'unix' : 'make -f make_unix.mak'
+	  \	}
+  \ }
+
+" Shell
+NeoBundle 'Shougo/vimshell.vim'
 
 " Trees
 NeoBundle 'scrooloose/nerdtree'
@@ -128,17 +139,16 @@ augroup vimrc-cpp
   setlocal path+=~/usr/include/c++/4.9.2,/usr/include
   
   " Tab系
-  set expandtab
+	set expandtab
   set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
+	set shiftwidth=2
 augroup END
 
 
-augroup vimrc-make
-  " Tab
+let _curfile=expand("%:r")
+if _curfile == 'Makefile'
   set noexpandtab
-augroup END
+endif
 
 syntax enable
 hi Function guifg=red
