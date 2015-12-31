@@ -136,7 +136,7 @@ augroup vimrc-cpp
   setlocal matchpairs+=<:>
 
   " set include dir
-  setlocal path+=~/usr/include/c++/4.9.2,/usr/include
+  setlocal path=/usr/local/include
   
   " Tab系
 	set expandtab
@@ -144,8 +144,7 @@ augroup vimrc-cpp
 	set shiftwidth=2
 augroup END
 
-
-let _curfile=expand("%:r")
+let _curfile=expand("%:t")
 if _curfile == 'Makefile'
   set noexpandtab
 endif
