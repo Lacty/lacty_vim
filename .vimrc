@@ -4,7 +4,6 @@ scriptencoding utf-8
 
 " オートインデント
 set autoindent
-set expandtab
 
 " (Win)パス区切りをスラッシュに
 set shellslash
@@ -34,8 +33,8 @@ set cursorline
 set hlsearch
 
 " .cpp .hpp .h .sln .csproj での折り返し無効
-autocmd BufRead,BufNewFile *.cpp    set nowrap
-autocmd BufRead,BufNewFile *.hpp    set nowrap
+autocmd BufRead,BufNewFile *.cpp    set nowrap path=/usr/local/include matchpairs+=<:> expandtab tabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.hpp    set nowrap path=/usr/local/include matchpairs+=<:> expandtab tabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.h      set nowrap
 autocmd BufRead,BufNewFile *.sln    set nowrap
 autocmd BufRead,BufNewFile *.csproj set nowrap
@@ -130,20 +129,7 @@ if has('conceal')
 endif
 
 
-" C++の設定
-augroup vimrc-cpp
-  " 括弧を構成する設定に<>を追加
-  setlocal matchpairs+=<:>
-
-  " set include dir
-  setlocal path=/usr/local/include
-  
-  " Tab系
-	set expandtab
-  set tabstop=2
-	set shiftwidth=2
-augroup END
-
+" setting for Makefile
 let _curfile=expand("%:t")
 if _curfile == 'Makefile'
   set noexpandtab
