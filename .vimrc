@@ -136,4 +136,3 @@ if _curfile == 'Makefile'
 endif
 
 syntax enable
-hi Function guifg=red
