@@ -79,14 +79,8 @@ NeoBundle 'Shougo/vimshell.vim'
 " Trees
 NeoBundle 'scrooloose/nerdtree'
 
-" syntastic
-" NeoBundle 'scrooloose/syntastic'
-NeoBundle 'osyo-manga/vim-watchdogs'
-" Requirement
+" quick run
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'osya-manga/shabadou.vim'
-NeoBundle 'jceb/vim-hier'
-NeoBundle 'dannyob/quickfixstatus'
 
 " Wandbox
 NeoBundle 'rhysd/wandbox-vim'
@@ -96,6 +90,10 @@ call neobundle#end()
 
 " neocomplete の設定
 let g:neocomplete#enable_at_startup = 1
+
+
+" setting of quick run
+let g:quickrun_config = {'*': {'split': ''}}
 
 
 " setting clang opt
