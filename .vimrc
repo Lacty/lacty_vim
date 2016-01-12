@@ -80,7 +80,13 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'scrooloose/nerdtree'
 
 " syntastic
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'osyo-manga/vim-watchdogs'
+" Requirement
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'osya-manga/shabadou.vim'
+NeoBundle 'jceb/vim-hier'
+NeoBundle 'dannyob/quickfixstatus'
 
 " Wandbox
 NeoBundle 'rhysd/wandbox-vim'
