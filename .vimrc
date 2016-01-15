@@ -94,6 +94,9 @@ let g:neocomplete#enable_at_startup = 1
 
 " setting of quick run
 let g:quickrun_config = {'*': {'split': ''}}
+let g:quickrun_config.cpp = {
+\   'cmdopt': '-std=c++14'
+\ }
 
 
 " setting clang opt
